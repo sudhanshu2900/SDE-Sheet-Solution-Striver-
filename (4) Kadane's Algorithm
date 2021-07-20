@@ -1,0 +1,23 @@
+PROBLEM & SOLUTION LINK: https://www.youtube.com/watch?v=w_KEocd__20&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=5 
+
+
+CODE:
+
+int KadaneAlgo(vector<int> &arr){
+	int sum = 0, maxSum = INT_MIN;
+
+	for(int i=0; i<arr.size(); i++){
+		sum += arr[i];
+
+		maxSum = max(maxSum, sum);
+
+		if(sum < 0) sum = 0;		
+	}
+
+	retun maxSum;
+}
+
+
+
+
+
