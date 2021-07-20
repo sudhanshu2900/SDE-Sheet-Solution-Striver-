@@ -1,0 +1,55 @@
+PROBLEM & SOLUTION: https://www.youtube.com/watch?v=32Ll35mhWg0&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=1
+
+
+CODE:
+
+_____________Method-1 (sorting)_____________         TC- O(n log(n)),  SC- O(1)
+
+int findDuplicate(vector<int>& nums){
+	sort(nums.begin(), nums.end());
+
+	for(int i=0; i<nums.size(); i++)
+		if(nums[i] == nums[i+1]) return nums[i];
+	
+}
+
+
+_____________Method-2 (Hahsing)_______________    		TC- O(n),  SC- O(n)
+
+int findDuplicate(vector<int>& nums){
+	vector<int> duplicate(nums.size(), 0);
+
+	for(int i=0; i<nums.size(); i++)
+		duplicate[nums[i]]++;	
+
+	for(int i=0; i<duplicate.size(); i++)
+		if(duplicate[i] > 1) return duplicate[i];	
+}
+
+
+______________Method-3_____________________ 					TC- O(n),  SC- O(1)
+
+int findDuplicate(vector<int>& nums) {
+    int slow = nums[0], fast = nums[0];
+        
+    slow = nums[slow];
+    fast = nums[nums[fast]];        
+        
+    while(slow != fast){
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+    }
+        
+    fast = nums[0];
+        
+    while(slow != fast){
+        slow = nums[slow];
+        fast = nums[fast];
+    }
+        
+    return slow;
+}
+
+
+
+
