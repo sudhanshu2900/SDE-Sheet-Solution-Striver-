@@ -30,7 +30,7 @@ vector<ll> nthRowOfPascalTriangle(int n) {
    
 ______________Method-2___________________               TC-O(n^2),   SC-O(1)
     
-void printPascal(int n)
+void printnthRowOfPascalTriangle(int n)
 {     
     for (int line = 1; line <= n; line++)
     {
@@ -46,5 +46,40 @@ void printPascal(int n)
 
 
 
+______________Method-3__________________                     TC- O(n),   SC- O(n)
 
 
+vector<ll> nthRowOfPascalTriangle(int n)
+{   
+    int res = 1, m = 1;
+    vector<int> answer;
+    
+    for (int i=0; i<m; i++)
+    {
+        res = res * (m + i);
+        res = res / (i + 1);
+        
+        answer.push_back(res);
+    }
+    return answer;
+}
+
+
+
+
+**************************************** VARIATION ****************************************************
+
+        If someone ask the value at particular block means at a column of a row.     
+        like: Row no = 2, col no = 4         (that is value at matrix[1][3])
+
+        So its simple formula to calculate this is - (r-1)
+                                                          C               where, r -> row no    and    c -> column no   
+                                                            (c-1)
+
+                                                    
+        Here its,  TC- O(n)   and   SC- O(1) 
+        
+        
+ 
+                                                    
+                       
