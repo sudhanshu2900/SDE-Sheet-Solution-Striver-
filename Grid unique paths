@@ -1,0 +1,51 @@
+PROBLEM & SOLUTION: https://www.youtube.com/watch?v=t_f0nwwdg5o&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=17
+
+
+CODE:
+
+
+_________________Method-1________________________
+
+int countUniquePaths(int i, int j, int n, int m){
+	if(i==(n-1) || j==(m-1)) return 1;
+	if(i>n || j>m) return 0;
+
+	return countPath(i+1, j, n, m)+countPath(i, j+1, n, m);
+}
+
+
+
+_________________Method-2_________________________
+
+int countUniquePaths(int i, int j, int n, int m){
+	int t[n][m];
+	memset(t, -1, sizeof(t));
+
+	if(i==(n-1) || j==(m-1)) return 1;
+	if(i>n || j>m) return 0;
+
+	if(t[i][j] != -1) 
+      return t[i][j];
+	else 
+      return t[i][j] = countPath(i+1, j, n, m)+countPath(i, j+1, n, m);
+}
+
+
+
+__________________Method-3________________________
+
+int countUniquePaths(int i, int j, int n, int m){
+	int t[n][m];
+	for(int i=0; i<n; i++){
+		for(int j=0; j<m; j++){
+			if(i==0 || j==0) t[i][j] = 1;
+			else
+				t[i][j] = t[i][j-1]+t[i-1][j];
+		}
+	}
+	return t[n][m];
+}
+
+
+
+
