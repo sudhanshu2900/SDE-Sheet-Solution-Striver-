@@ -1,0 +1,43 @@
+PROBLEM & SOLUTION: https://www.youtube.com/watch?v=LuLCLgMElus&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=9 
+
+
+CODE:
+
+___________Method-1________________
+
+void permutation(int arr[], int n){
+	next_permutation(arr, arr+n);
+}
+
+
+___________Method-2_________________
+
+void permutation(vector<int> arr){
+	next_permutation(arr.begin(), arr.end());
+}
+
+
+___________Method-3_________________
+
+void permutation(vector<int> arr){
+	int n = arr.size()
+
+	for(int k=n-2; k>=0; k--)
+		if(arr[k] < arr[k+1]) break;
+
+	if(k<0)
+		reverse(arr.begin(), arr.end());
+	else{
+		for(int i=n-1; i>k; i--)
+			if(arr[i] > arr[k]) break;
+
+		swap(arr[k], arr[l]);
+
+		reverse(arr.begin()+k+1, arr.end());
+	}
+}
+
+
+
+
+
