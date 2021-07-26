@@ -34,10 +34,31 @@ void rotateMatrix(int mat[n][n]){
 			mat[j][n-1-i] = temp;
 		}
 	}
-  
-  
-  
-  
-  
-  
+	
 }
+
+
+
+____________Method-3____________
+
+Here, first we transpose the matrix and then reverse each row one by one.
+
+	Ex.
+		   [1 2 3]		 	  [1 4 7]				     [7 4 1]
+	mat[][] =  [4 5 6]    -- Transpose -->    [2 5 8]     -- reverse each row -->        [8 5 2]
+		   [7 8 9]			  [3 6 9]				     [9 6 3]
+
+
+
+Void rotateMatrix(int mat[n][n])
+{
+	for(int i=0; i<n; i++){				//Transpose
+		for(int j=0; j<i; j++)
+			swap(mat[i][j], mat[j][i]);
+	}
+	reverse(mat[i].begin(), mat[i].end());		//reverse
+}
+
+
+
+
