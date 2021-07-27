@@ -1,0 +1,61 @@
+PROBLEM & SOLUTION: 
+
+
+CODE:
+
+
+_________________Method-1____________________                 TC - O(N^2),  SC - O(1)
+
+int majorityElementNby3(vector<int> arr, int n){
+	int major;
+	for(int i=0; i<n; i++){
+		major = 1;
+		for(int j=i+1; j<n; j++){
+			if(arr[i] == arr[j]) major++;
+		}
+		if(major > n/2) return arr[i];
+	}
+	return -1;
+}
+
+
+
+________________Method-2______________________                TC - O(N) or O(n log(N)),   SC - O(N)
+
+int majorityElementNby2(vector<int> arr, int n){
+	unordered_map<int, int> frequency;
+	for(int i: arr)
+		frequency[arr[i]]++;
+
+	for(auto i=frequency.begin(); i!=frequency.end(); i++){
+		if(i->second > n/2) return i->first;
+	}
+
+	return -1;
+}
+
+
+
+
+_________________Method-3_______________________              TC - O(N),  SC - O(1)
+
+int majorityElementNby3(vector<int> arr, int n){
+	int count = 0, element;
+	for(int i=0; i<n; i++){
+		if(count == 0){
+			element = arr[i];
+			count++;
+		}
+		else{ 
+			if(arr[i] != element)
+				count--;
+			else
+				count++;
+		}
+	}
+	if(count > 0) return ele;
+}
+
+
+
+
