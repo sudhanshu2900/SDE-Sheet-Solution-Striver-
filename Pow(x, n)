@@ -1,0 +1,41 @@
+PROBLEM & SOLUTION:
+
+
+CODE:
+
+_____________Method-1__________________
+
+double myPow(double x, int n) {
+    double ans = 1.0;
+    if(n==0) return ans;
+
+    for(int i=0; i<n; i++)
+        ans = ans*x;
+    
+    if(n>0) return ans;
+    else if(n<0) return (double) 1.0 / (double) ans;
+    return 0.0;
+}
+
+
+
+_____________Method-2____________________
+
+double myPow(double x, int n) {
+    
+    double ans = 1.0;
+    while(n>0){
+    	if(n%2==0){
+    		if(n>0) ans = ans * x;
+    		else if(n<0) ans = ans / x;
+    	}
+    	x = x*x;
+    	n = n/2;
+    }
+
+    return ans;
+}
+
+
+
+
