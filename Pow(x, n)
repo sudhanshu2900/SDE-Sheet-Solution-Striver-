@@ -1,4 +1,4 @@
-PROBLEM & SOLUTION:
+PROBLEM & SOLUTION: https://www.youtube.com/watch?v=l0YC3876qxg&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=14
 
 
 CODE:
@@ -19,7 +19,7 @@ double myPow(double x, int n) {
 
 
 
-_____________Method-2____________________
+_____________Method-2____________________                   TC - O(N),   SC- O(1)
 
 double myPow(double x, int n) {
     
