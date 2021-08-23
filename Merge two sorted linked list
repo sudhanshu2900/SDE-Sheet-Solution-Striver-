@@ -1,0 +1,61 @@
+________________________Method 1___________________________
+
+ListNode merge2SortedLL(ListNode *head1, ListNode *head2){
+
+	if(head1 == NULL) return head2;
+	else if(head2 == NULL) return head1;
+
+	ListNode *currPos1 = head1, *currPos2 = head2;
+	ListNode *compare = NULL, *newHead = NULL;
+
+	if(currPos1->data < currPos2->data){
+		compare = currPos1;
+		newHead = currPos1;
+		currPos1 = currPos1->next;
+	}
+	else{
+		compare = currPos2;
+		newHead = currPos2;
+		currPos2 = currPos2->next;
+	}
+
+	while(currPos1 != NULL && currPos2 != NULL){
+		if(currPos1->data <= currPos2->data){
+			compare->next = currPos1;
+			currPos1 = currPos1->next;
+		}
+		else{
+			compare->next = currPos2;
+			currPos2 = currPos2->next;
+		}
+	}
+
+	if(currPos1 == NULL)
+		compare->next = currPos2;	
+	else if(currPos2 == NULL)
+		compare->next = currPos1;
+	
+	return newHead;
+}
+
+
+____________________________Method 2_________________________
+
+ListNode merge2SortedLL(ListNode *head1, ListNode *head2)
+{
+	if(head1 == NULL) return head2;
+	if(head2 == NULL) return head1;
+	
+	if(head1->data <= head2->data)
+		head1->next = merge2SortedLL(head1->next, head2);
+		return head1;
+	else{
+		head2->next = merge2SortedLL(head1, head2->next);
+		return head2;
+	}
+}
+
+
+
+
+
