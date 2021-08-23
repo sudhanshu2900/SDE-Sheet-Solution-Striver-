@@ -1,0 +1,23 @@
+ListNode* reverseK(ListNode *head, int k)
+{
+	if(head == NULL || head->next == NULL || k==0) return head;
+
+	ListNode *prev = NULL, *forward, *curr = head;
+	while(curr != NULL || k>0){
+		forward = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = forward;
+		k--;
+	}
+
+	if(forward != NULL)
+		head->next = reverseK(forward, k);
+
+	return prev;
+}
+
+
+
+
+
