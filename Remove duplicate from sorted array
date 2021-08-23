@@ -1,0 +1,45 @@
+_________________Method 1______________________
+
+int removeDuplicates(vector<int> nums){
+
+	if(nums.size() == 0) return 0;
+
+	set<int> s;
+	for(int i=0; i<nums.size(); i++){
+		s.insert(nums[i]);
+	}
+
+	int setSize = s.size();
+	int j=0;
+	while(auto it = s.begin(); it != s.end(); it++){
+		nums[j] = s[it];
+		j++;
+	}
+	return i+1;
+}
+
+
+_____________________Method 2__________________________
+
+int removeDuplicates(vector<int> nums){
+	int n = nums.size();
+	int i = 0, j = i+1;
+
+	if(n==0) return 0;
+
+	while(i<n && j<n){
+		if(nums[i] == nums[j])
+			j++;
+		else{
+			i++;
+			nums[i] = nums[j];
+			j++;
+		}
+	}
+
+	return i+1;
+}
+
+
+
+
