@@ -1,0 +1,42 @@
+______________________Method 1_____________________
+
+ListNode removeNthNodeFromBackLL(ListNode *head){
+	int length = 1;
+	ListNode *traverse;
+	
+	while(traverse->next != NULL){
+		length++;
+		traverse = traverse->next;
+	}
+
+	traverse = head;
+
+	for(int i=0; i<(length-n+1)-2; i++){
+		traverse = traverse->next;
+	}
+
+	traverse->next = traverse->next->next;
+	return head;
+}
+
+
+____________________Method 2_______________________
+
+
+ListNode removeNthNodeFromBackLL(ListNode *head, int n){
+	ListNode *pointToNth = head, *temp;
+	
+	for(int i=0; i<n-1; i++){
+		pointToNth = pointToNth->next;
+	}
+
+	while(pointToNth->next != NULL){
+		pointToNth = pointToNth->next;
+		temp = temp->next;
+	}
+
+	temp->data = temp->next->data;
+	temp->next = temp->next->next;
+
+	return head;
+}
