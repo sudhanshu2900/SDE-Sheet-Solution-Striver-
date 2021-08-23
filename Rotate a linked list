@@ -1,0 +1,44 @@
+________________________Method 1____________________________
+
+ListNode rotateLL(ListNode *head, int k)
+{
+	if(head == NULL || head->next == NULL || k == 0) return head;
+
+	while(k--){
+		ListNode *travrse = head;
+
+		while(travrse->next->next != NULL){
+			travrse = travrse->next;
+		}
+		travrse->next = head;
+		travrse->next = NULL;
+	}
+}
+
+
+_____________________Method 2_____________________________
+
+ListNode rotateLL(ListNode *head, int k)
+{
+	if(head == NULL || head->next == NULL || k == 0) return head;
+
+	ListNode *travrse = head;
+	int length = 1;
+
+	while(travrse->next != NULL){
+		length++;
+		travrse = travrse->next;
+	}
+	travrse->next = head;
+
+	if(k >= length) k %= length;
+
+	ListNode *temp = head;
+	for(int i=0; i<(length-k-1); i++){
+		temp = temp->next;
+	}
+
+	head = temp->next;
+	temp->next = NULL;
+	return head;
+}
