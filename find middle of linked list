@@ -1,0 +1,14 @@
+ListNode middleOfLL(ListNode *head){
+	ListNode *first = head, *second = head;
+
+	while(second->next != NULL && second != NULL){
+		first = first->next;
+		second = second->next->next; 
+	}
+
+	return first;
+}
+
+
+
+
