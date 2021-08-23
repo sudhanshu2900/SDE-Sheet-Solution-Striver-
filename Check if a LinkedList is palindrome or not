@@ -1,0 +1,70 @@
+___________________Method 1__________________________
+
+bool isPalindromeOrNot(LisNode *head){
+	if(head == NULL || head->next == NULL) return true;
+
+	stack<int> tracker;
+	ListNode *temp = head;
+
+	while(temp != NULL){
+		tracker.push(temp->data);
+		temp = temp->next;
+	}
+
+	temp = head;
+	while(temp != NULL){
+		if((temp->data) != tracker.top()) return false;
+		temp = temp->next;
+		tracker.pop();
+	}
+	return true;
+}
+
+
+_____________________Method 2_______________________
+
+bool isPalindromeOrNot(LisNode *head){
+	if(head == NULL || head->next == NULL) return true;
+
+	ListNode *slow = head, *fast = head;
+	while(fast->next != NULL && fast->next->next != NULL){
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+
+	slow->next = reverseLL(slow->next);
+	slow = slow->next;
+
+	//start -> if we allow to modify the linked list 
+	while(slow != NULL){
+		if(head->data != slow->data)
+			return false;
+		slow = slow->next;
+		head = head->next;
+	}
+	//end
+
+	//start -> if we not allow to modify the linked list
+	ListNode *temp = head;
+	while(slow != NULL){
+		if(temp->data != slow->data)
+			return false;
+		slow = slow->next;
+		temp = temp->next;
+	}
+
+	temp = head;
+	while(temp->next != NULL && temp->next->next != NULL){
+		temp = temp->next->next;
+		head = head->next;
+	}
+
+	head->next = reverseLL(head->next);
+	//end
+
+	return true;
+}
+
+
+
+
