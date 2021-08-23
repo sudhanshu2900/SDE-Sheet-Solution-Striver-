@@ -1,0 +1,31 @@
+________________Method 1_________________
+
+vector<int> 2Sum(vector<int> arr, int sum){
+	
+	for(int i=0; i<arr.size(); i++){
+		for(int j=i+1; j<arr.size(); j++){
+			if(arr[i] + arr[j] == sum)
+				return {i, j};
+		}
+	}
+}
+
+
+_______________Method 2__________________
+
+vector<int> 2Sum(vector<int> arr, int sum){
+	
+	unordered_map<int, int> mp;
+	
+	for(int i=0; i<arr.size(); i++)
+	{
+		if(mp.find(sum-arr[i]) != mp.end()){
+			return {i, mp[sum-arr[i]]};
+		}
+		mp[arr[i]] = i;
+	}
+}
+
+
+
+
