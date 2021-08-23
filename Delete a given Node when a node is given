@@ -1,0 +1,9 @@
+void deleteGivenNodeLL(ListNode *pos){
+	
+	pos->data = pos->next->data;
+	pos->next = pos->next->next;
+}
+
+
+
+
