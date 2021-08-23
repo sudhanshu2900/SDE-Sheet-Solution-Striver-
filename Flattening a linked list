@@ -1,0 +1,35 @@
+ListNode* flattenLinkedLists(ListNod *head){
+	if(head == NULL || head->next == NULL)
+		return head;
+
+	head->next = flattenLinkedLists(head->next);
+	head = merge2LL(head, head->next);
+
+	return head;
+}
+
+ListNode* merge2LL(ListNode *a, ListNode *b){
+	ListNode *temp1 = a, *temp2 = b;
+	ListNode *dummy = new ListNode(0);
+	ListNode *res = dummy;
+
+	while(temp1 != NULL || temp2 != NULL){
+		if(temp1->data < temp2->data){
+			res->bottom = temp1;
+			temp1 = temp1->next;
+			res = res->next; 
+		}
+		else{
+			res->bottom = temp2;
+			temp2 = temp2->next;
+			res = res->next; 
+		}
+	}
+	if(temp1 != NULL) res->bottom = temp1;
+	if(temp2 != NULL) res->bottom = temp2;
+
+	return res->bottom;
+}
+
+
+
