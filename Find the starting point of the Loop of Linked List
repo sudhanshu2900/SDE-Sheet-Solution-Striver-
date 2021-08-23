@@ -1,0 +1,50 @@
+__________________Method 1___________________
+
+ListNode *starterOfLoop(ListNode *head){
+	if(head == NULL) return NULL;
+
+	vector<ListNode*> visited;
+	ListNode *travel = head;
+
+	while(travel->next != NULL){
+		auto i = find(visited.begin(), visited.end(), travel);
+		if(i != visited.end())
+			return i;
+		else{
+			visited.push_back(travel);
+		}
+		travel = travel->next;
+	}
+	return NULL;
+}
+
+
+___________________Method 2__________________
+
+ListNode *starterOfLoop(ListNode *head){
+	if(head == NULL) return NULL;
+
+	ListNode *slow = head, *fast = head;
+	
+	while(fast->next == NULL && fast->next->next == NULL){
+		slow = slow->next;
+		fast = fast->next->next;
+		if(fast == slow){
+			slow = head;
+			break;
+		}
+	}
+
+	while(slow != fast){
+		slow = slow->next;
+		fast = fast->next;
+	}
+	
+	return slow;
+}
+
+
+
+
+
+
