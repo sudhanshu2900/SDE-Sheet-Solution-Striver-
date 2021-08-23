@@ -1,0 +1,33 @@
+ListNode add2numbers(ListNode *head1, ListNode *head2){
+	if(head1 == NULL) return head2;
+	if(head2 == NULL) return head1;
+
+	int carry = 0;
+	ListNode *dummy = new ListNode(0);
+	ListNode *temp = dummy;
+
+	while(head1 || head2 || carry){
+		int sum = 0;
+		if(head1 != NULL){
+			sum += (head1->data);
+			head1 = head1->next;
+		}
+		if(head2 != NULL){
+			sum += (head2->data);
+			head2 = head2->next;
+		}
+
+		sum += carry;
+		carry = sum/10;
+
+		ListNode *newNode = new ListNode(sum%10);
+		temp->next = newNode;
+		temp = temp->next;
+	}
+	return dummy->next;
+}
+
+
+
+
+
