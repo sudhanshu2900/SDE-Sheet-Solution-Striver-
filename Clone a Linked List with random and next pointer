@@ -1,0 +1,45 @@
+
+void cloneLinkedList(ListNode *head)
+{	
+	ListNode *travel = head;
+	
+	//Add duplicate nodes
+
+	while(travel != NULL){
+		ListNode *dupNode = new ListNode(travel->data);
+		dupNode->next = travel->next;
+		travel->next = dupNode->next;
+		travel = travel->next->next;
+	}
+
+	//Add random pointers to duplicate nodes
+
+	travel = head;
+	while(travel != NULL){
+		if(travel->random != NULL)
+			travel->next->random = travel->random->next;
+		travel = travel->next->next;
+	}
+
+	//Segregate both the original and duplicate Linked lists
+
+	travel = head;
+	ListNode *dummy = new ListNode(0);
+	ListNode *newDupPointers = dummy, *front = head;
+
+	while(travel != NULL){
+		front = travel->next->next;
+		newDupPointers->next = travel->next;
+		newDupPointers = newDupPointers->next;
+		travel->next = front;
+		travel = front;
+	}
+
+	return dummy->next;									//it gives clone linked list
+	
+	//return head;										  it gives original linked list
+}
+
+
+
+
