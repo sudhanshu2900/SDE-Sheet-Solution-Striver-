@@ -1,0 +1,36 @@
+_________________Methos 1_____________________________
+
+bool areAnagram(string s1, string s2, int n1, int n2){
+    if(n1==1 && n2==1){
+        if(s1[0] == s2[0]) return true;
+        else return false;
+    }
+
+    sort(s1.begin(), s1.end());
+    sort(s2.begin(), s2.end());
+
+    if(s1 == s2) return true;
+    else return false; 
+}
+
+
+_____________________Method 2_________________________
+
+bool areAnagram(string s1, string s2, int n1, int n2){
+    if(n1==1 && n2==1){
+        if(s1[0] == s2[0]) return true;
+        else return false;
+    }
+
+    int countChar[27] = {0};
+    
+    for(int i=0; i<27; i++){
+        countChar[s1[i]]++;
+        countChar[s2[i]]--;
+    }
+
+    for(int i=0; i<27; i++){
+        if(countChar[i] != 0) return false;
+    }
+    return true;
+}
