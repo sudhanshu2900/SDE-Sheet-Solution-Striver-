@@ -1,0 +1,23 @@
+int trappingWater(int arr[]){
+	int n = arr.size(); left = 0, right = n-1, leftMost = 0, rightMost = 0, res = 0;
+
+	while(left <= right){
+		if(arr[left] <= arr[right]){
+			if(arr[left] <= leftMost) res += (leftMost-arr[left]);
+			else leftMost = arr[left];
+
+			left++;
+		}
+		else{
+			if(arr[right] <= rightMost) res += (rightMost-arr[right]);
+			else rightMost = arr[right];
+
+			right++;
+		}
+	}
+	return res;
+}
+
+
+
+
