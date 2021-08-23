@@ -1,0 +1,40 @@
+________________Method 1_______________________
+
+bool DetectCycle(ListNode *head){
+	if(head == NULL) return false;
+
+	vector<ListNode*> visited;
+	ListNode *travel = head;
+
+	while(travel->next != NULL){
+		if(find(visited.begin(), visited.end(), travel) != visited.end()){
+			return true;
+		}
+		else{
+			visited.push_back(travel);
+		}
+		travel = travel->next;
+	}
+	return false;
+}
+
+
+______________Method 2________________________
+
+bool DetectCycle(ListNode *head){
+	if(head == NULL) return false;
+
+	ListNode *slow = head, *fast = head;
+	
+	while(fast->next == NULL && fast->next->next == NULL){
+		slow = slow->next;
+		fast = fast->next->next;
+		if(fast == slow)
+			return true;
+	}
+	return false;
+}
+
+
+
+
