@@ -1,0 +1,72 @@
+___________________Method 1_________________________
+
+int longConsSequence(vector<int> arr, int n){
+	int largestEle = *max_element(arr.begin(), arr.end());
+	int len = 0, currLen = 0;
+
+	int vector<int> store(largestEle + 1);
+	memset(store, 0, sizeof(store));
+
+	for(int i=0; i<n; i++){
+		store[arr[i]]++;
+	}
+
+	for(int i=0; i<=largestEle; i++){
+		if(store[i] != 0) currLen++;
+		if(store[i] == 0){
+			len = max(len, currLen);
+			currLen = 0;
+		}
+	}
+	return len;
+}
+
+
+
+___________________Method 2______________________
+
+int longConsSequence(vector<int> arr, int n){
+	sort(arr.begin(), arr.end());
+
+	int len = 0, currLen = 0;
+
+	for(int i=1; i<n; i++){
+		if((arr[i]-arr[i-1]) == 1) currLen++;
+		else{
+			len = max(len, currLen);
+			currLen = 0;
+		}
+	}
+	len = max(len, currLen);
+	return len;
+}
+
+
+______________________Method 3________________________
+
+int longConsSequence(vector<int> arr, int n){
+	set<int> s;
+	for(int i: arr)
+		s.insert(i);
+
+	int len = 0;
+
+	for(int i=0; i<n; i++){
+		if(!(s.find(arr[i]-1) != s.end())){
+			int currNum = arr[i];
+			int currLen = 1;
+
+			while(s.find(currNum+1) != s.end()){
+				currLen++;
+				currNum++;
+			}
+
+			len = max(len, currLen);
+		}
+	}
+	return len;
+}
+
+
+
+
