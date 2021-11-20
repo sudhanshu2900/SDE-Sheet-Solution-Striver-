@@ -63,7 +63,7 @@ void Merge2SortedArrays(int arr1[], int arr2[]){
 	}
 
 	sort(arr1.begin(), arr1.end());
-	sort(arr1.begin(), arr1.end());
+	sort(arr2.begin(), arr2.end());
 }
 
 
